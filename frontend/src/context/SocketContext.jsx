@@ -1,11 +1,10 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
+import server from '../environment';
 
 const SocketContext = createContext();
 
-const SOCKET_SERVER_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
-  ? 'http://localhost:2100' 
-  : `http://${window.location.hostname}:2100`;
+const SOCKET_SERVER_URL = server;
 
 export function SocketProvider({ children }) {
   const [socket, setSocket] = useState(null);

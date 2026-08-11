@@ -61,8 +61,10 @@ zoom-clone/
 ├── frontend/
 │   ├── src/
 │   │   ├── components/             # Reusable UI (Lobby, ActiveMeeting, Auth, Modals)
+│   │   ├── context/                # React context providers (AuthContext, SocketContext)
 │   │   ├── pages/                  # Dashboard, LobbyPage, MeetingPage
 │   │   ├── services/               # API client & backend service integration
+│   │   ├── environment.js          # Centralized server environment config (Dev vs. Prod)
 │   │   ├── App.jsx                 # Routes & Navigation
 │   │   └── main.jsx
 │   └── package.json
@@ -70,6 +72,16 @@ zoom-clone/
 ├── .gitignore                      # Root gitignore excluding secrets & build outputs
 └── README.md
 ```
+
+---
+
+## ⚙️ Environment Configuration
+
+Backend server URLs are centralized in [`frontend/src/environment.js`](file:///d:/Desktop/Dhairya/My/WEB%20DEV/zoom-clone/frontend/src/environment.js). The environment switches automatically based on Vite's build mode:
+
+- **Development Mode (`npm run dev`)**: Automatically targets `http://localhost:2100`.
+- **Production Mode (`npm run build`)**: Vite sets `import.meta.env.PROD` to `true`, directing all REST API and WebSocket requests to `https://zoom-clone-backend-bp2t.onrender.com`.
+- **Custom Backend URL**: You can set `VITE_BACKEND_URL` in a `.env` file inside `frontend/` to override the backend endpoint if needed.
 
 ---
 
@@ -142,6 +154,7 @@ npm run dev
 2. Set **Root Directory** to `frontend`.
 3. Set **Build Command** to `npm install && npm run build`.
 4. Set **Publish Directory** to `dist`.
+5. *(Optional)* Add Environment Variable: `VITE_BACKEND_URL` = `https://zoom-clone-backend-bp2t.onrender.com`.
 
 ---
 
